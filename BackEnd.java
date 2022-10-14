@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Server extends JFrame {
+public class BackEnd extends JFrame {
     private final JTextField userTextMsg;
     private final JTextArea chatWindow;
     private ObjectOutputStream outputStream;
@@ -13,7 +13,7 @@ public class Server extends JFrame {
     private Socket socket;
 
     //building a constructor
-    public Server() {
+    public BackEnd() {
         super("Messenger");
         userTextMsg = new JTextField();
         // set to false before connection.
@@ -43,8 +43,9 @@ public class Server extends JFrame {
     //Setup and configure the server.
     // 100 - queue length , how many people can join
     // 6789 - where is the server.
-    public void startRun() throws IOException{
+    public void startRun() throws IOException {
         try {
+            // attempt to connect to host' IP
             serverSocket = new ServerSocket(6789, 100);
             while (true) {
                 try {
@@ -55,7 +56,7 @@ public class Server extends JFrame {
                     StreamSetup();
                     _whileChatting();
                 } catch (EOFException exception) {
-                    showMessage("\n Server has ended connection");
+                    showMessage("\n BackEnd has ended connection");
                 } finally {
                     endConversation();
                 }

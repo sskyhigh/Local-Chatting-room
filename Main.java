@@ -1,9 +1,8 @@
-import javax.swing.JFrame;
 import java.io.IOException;
 
-public class testServer {
+public class Main {
     public static void main(String[] args) throws IOException {
-        Server server = new Server();
+        BackEnd server = new BackEnd();
         server.startRun();
     }
 }
