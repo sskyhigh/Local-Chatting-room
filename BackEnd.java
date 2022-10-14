@@ -11,7 +11,8 @@ public class BackEnd extends JFrame {
     private ObjectInputStream inputStream;
     private ServerSocket serverSocket;
     private Socket socket;
-    private final int port = 80;
+    private final int port = 12001;
+    private JButton button;
 
     //building a constructor
     public BackEnd() {
@@ -28,22 +29,26 @@ public class BackEnd extends JFrame {
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
-                        userTextMsg.setText(" ");
+                        userTextMsg.setText(null);
                     }
                 }
         );
         add(userTextMsg, BorderLayout.NORTH);
         // user can chat here
+
         chatWindow = new JTextArea();
-        add(new JScrollPane(chatWindow));
+        add(new JScrollPane(chatWindow), BorderLayout.CENTER);
         setSize(400, 200);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        button = new JButton("Send");
+        add(button);
+        setVisible(true);
     }
 
     //Setup and configure the server.
     // 100 - queue length , how many people can join
-    // 6789 - where is the server.
+    // 12001 - where is the server.
     public void startRun() throws IOException {
         try {
             // attempt to connect to host' IP
@@ -81,7 +86,7 @@ public class BackEnd extends JFrame {
         outputStream = new ObjectOutputStream(socket.getOutputStream());
         outputStream.flush();
         inputStream = new ObjectInputStream(socket.getInputStream());
-        showMessage("Connection has been established");
+        showMessage("\nConnection has been established");
     }
 
     // chatting
@@ -95,7 +100,7 @@ public class BackEnd extends JFrame {
                 Message = (String) inputStream.readObject();
                 showMessage("\n " + Message);
             } catch (ClassNotFoundException exception) {
-                showMessage("Not readable");
+                showMessage("\nNot readable");
             }
         } while (!Message.equals("CLIENT - END"));
     }
@@ -119,7 +124,7 @@ public class BackEnd extends JFrame {
         try {
             outputStream.writeObject("Sky: " + _message);
             outputStream.flush();
-            showMessage("\n Sky" + _message);
+            showMessage("\n Sky::" + _message);
         } catch (IOException exception) {
             chatWindow.append("\n Error, unable to send msg");
         }
