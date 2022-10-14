@@ -11,6 +11,7 @@ public class BackEnd extends JFrame {
     private ObjectInputStream inputStream;
     private ServerSocket serverSocket;
     private Socket socket;
+    private final int port = 80;
 
     //building a constructor
     public BackEnd() {
@@ -46,7 +47,7 @@ public class BackEnd extends JFrame {
     public void startRun() throws IOException {
         try {
             // attempt to connect to host' IP
-            serverSocket = new ServerSocket(6789, 100);
+            serverSocket = new ServerSocket(port, 100);
             while (true) {
                 try {
                     // setting up a connection.
