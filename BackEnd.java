@@ -42,7 +42,7 @@ public class BackEnd extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button = new JButton("Send");
-        add(button);
+        //add(button);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

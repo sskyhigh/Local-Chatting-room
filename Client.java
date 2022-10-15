@@ -103,14 +103,14 @@ public class Client extends JFrame {
 
     public void whileChatting() throws IOException {
         _permissionToType(true);
-        do {
+        while (true) {
             try {
                 _message = (String) inputStream.readObject();
                 showMessage("\n " + _message);
             } catch (ClassNotFoundException exception) {
                 showMessage("\n not readable");
             }
-        } while (!_message.equals("Client - End"));
+        }
     }
 
     // closes the connection
