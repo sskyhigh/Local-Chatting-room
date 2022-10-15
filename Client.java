@@ -13,7 +13,8 @@ public class Client extends JFrame {
     private final String serverIP;
     private Socket socket;
     private final int port = 12001;
-    private JButton button;
+    private final JButton button;
+    private final JButton closeConnection;
 
     // constructor
     public Client(String host) {
@@ -39,13 +40,14 @@ public class Client extends JFrame {
         add(new JScrollPane(chatWindow), BorderLayout.CENTER);
         setSize(400, 200);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button = new JButton("Send");
         button.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            sendData(e.getActionCommand());
+                            sendData(userText.getText());
                             userText.setText("");
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -54,6 +56,20 @@ public class Client extends JFrame {
                 }
         );
         add(button, BorderLayout.EAST);
+        closeConnection = new JButton("Disconnect");
+        closeConnection.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            closeConnection();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                }
+        );
+        add(closeConnection, BorderLayout.WEST);
     }
 
     public void startRun() throws IOException {
@@ -74,7 +90,7 @@ public class Client extends JFrame {
     public void connectServer() throws IOException {
         showMessage("Attempting to connect..");
         socket = new Socket(InetAddress.getByName(serverIP), port);
-        showMessage("Connected to: " + socket.getInetAddress().getHostName());
+        showMessage("\nConnected to: " + socket.getInetAddress().getHostName());
     }
 
     // set up the streams to set up message.
@@ -99,7 +115,7 @@ public class Client extends JFrame {
 
     // closes the connection
     private void closeConnection() throws IOException {
-        showMessage("Closing the chat");
+        showMessage("\nClosing the chat");
         _permissionToType(false);
         try {
             outputStream.close();

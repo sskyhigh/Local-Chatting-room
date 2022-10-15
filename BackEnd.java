@@ -44,6 +44,7 @@ public class BackEnd extends JFrame {
         button = new JButton("Send");
         add(button);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     //Setup and configure the server.
@@ -62,7 +63,7 @@ public class BackEnd extends JFrame {
                     StreamSetup();
                     _whileChatting();
                 } catch (EOFException exception) {
-                    showMessage("\n BackEnd has ended connection");
+                    showMessage("\n Successfully disconnected");
                 } finally {
                     endConversation();
                 }
@@ -75,7 +76,7 @@ public class BackEnd extends JFrame {
     // wait for the connection
     // display when connected.
     public void waitingForConnection() throws IOException {
-        showMessage("Waiting for someone to connect...");
+        showMessage("Waiting for client to connect...");
         socket = serverSocket.accept();
         System.out.println("Connected to " + socket.getInetAddress().getHostName());
     }
