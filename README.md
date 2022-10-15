@@ -1,8 +1,6 @@
 # Local-Chatting-room
-// Server
 
-run Main.java first 
-// client
+run Main.java first (Server)
 
 then run client.java
 
