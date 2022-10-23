@@ -5,7 +5,7 @@ Clone repo
 
 Run Main.java first (Server)
 
-then run client.java (Video below, please mute audio)
+then run client.java (TUtorial Video below, please mute audio)
 
 there are bugs, i will fix them when I am free. 
 
