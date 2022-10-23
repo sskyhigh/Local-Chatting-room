@@ -1,11 +1,15 @@
 # Local-Chatting-room
+Steps:
 
-run Main.java first (Server)
+Clone repo
 
-then run client.java
+Run Main.java first (Server)
+
+then run client.java (Video below, please mute audio)
 
 there are bugs, i will fix them when I am free. 
 
-inspired by bucky
+(inspired by bucky)
 
-![Snipaste_2022-10-23_15-31-14](https://user-images.githubusercontent.com/98570636/197413885-8917144d-cb41-4511-bb32-f357e120af75.png)
+https://user-images.githubusercontent.com/98570636/197415481-65cc0ac0-cf9e-43ad-9325-9ec1d5722271.mp4
+
